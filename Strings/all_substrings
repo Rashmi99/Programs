@@ -1,0 +1,41 @@
+package strings;
+
+import java.util.ArrayList;
+
+public class all_substrings {
+
+	public static void print_subs(String s,ArrayList<String>a) {
+		
+		for(int len=1;len<=s.length();len++) {
+			for(int i=0;i<=s.length()-len;i++) {
+				String x="";
+				int j=i+len-1;
+				for(int k=i;k<=j;k++)x+=s.charAt(k);
+				a.add(x);
+			}
+		}
+	}
+	//easier
+	public static void subs(String s,ArrayList<String>a) {
+		for(int i=0;i<s.length();i++) {
+			for(int j=i+1;j<=s.length();j++) {
+				a.add(s.substring(i,j));
+			}
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Substrings are");
+		ArrayList<String> a=new ArrayList<>();
+		subs("aaa",a);
+		int count=0;
+		for(int i=0;i<a.size();i++) {
+			StringBuilder ss=new StringBuilder();
+			ss.append(a.get(i));
+			if(a.get(i).equals(ss.reverse().toString()))count++;
+		}
+		System.out.println(a);
+		System.out.println(count);
+	}
+
+}
