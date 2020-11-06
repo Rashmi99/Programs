@@ -1,0 +1,43 @@
+package recursion;
+
+import java.util.ArrayList;
+//returns array of Strings wherein prefix #1>=#0 
+public class binary_prefix {
+
+	public static ArrayList<String> output_prefix(int n){
+		ArrayList<String> a=new ArrayList<>();
+		String op="";
+		int one=0,zero=0;
+		solve(one,zero,n,op,a);
+		return a;
+	}
+	public static void solve(int one,int zero,int n,String op,ArrayList<String> a) {
+		if(n==0) {
+			a.add(op);
+			return;
+		}
+		//String op1=op;
+		//op1+="1";
+		//solve(one+1,zero,n-1,op1,a);
+		if(one>zero) {
+			String op1=op;
+			String op2=op;
+			op1+="1";
+			op2+="0";
+			solve(one+1,zero,n-1,op1,a);
+			solve(one,zero+1,n-1,op2,a);
+		}
+		if(one==zero) {
+			String op1=op;
+			op1+="1";
+			solve(one+1,zero,n-1,op1,a);
+		}
+		return;
+	}
+	public static void main(String[] args) {
+		int n=3;
+		System.out.println(output_prefix(n));
+
+	}
+
+}
